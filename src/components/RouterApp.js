@@ -5,7 +5,7 @@ import { Home } from './Home';
 import { Insertar } from './Insertar';
 import { Listar } from './Listar';
 import { Menu } from './Menu';
-
+import { Editar } from './Editar';
 
 export const RouterApp = () => {
     return (
@@ -18,6 +18,8 @@ export const RouterApp = () => {
                     <Route exact path="/listar" component={Listar}/>
                     <Route exact path="/agregar" component={Insertar}/>
                     <Route exact path="/acercade" component={Acercade}/>
+                    <Route exact path="/editar/:id/nombre/:nombre/apellido/:apellido" 
+                    component={Editar}/>
                 </Switch>
             </Router>
         </div>

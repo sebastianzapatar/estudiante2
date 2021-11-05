@@ -10,9 +10,10 @@ export const Listar = () => {
         setestudiantes(estudiantes);
         console.log(estudiantes);
     }
+   // getEstudiantes();
     useEffect(() => {
         getEstudiantes();
-    }, [])
+    }, []);
     return (
         <div>
             {estudiantes1.map(estudiante=>(

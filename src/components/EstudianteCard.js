@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { url } from './utilities/global';
 export const EstudianteCard = ({estudiante}) => {
@@ -37,6 +38,11 @@ export const EstudianteCard = ({estudiante}) => {
             <h1>{estudiante.nombre} {estudiante.apellidos}</h1>
             <img src={url+"imagen/"+estudiante.image}
             alt={estudiante._id} width="150px"></img>
+            
+            <Link
+            to={"/editar/"+estudiante._id+"/nombre/"+estudiante.nombre+
+            "/apellido/"+estudiante.apellidos}
+            className="btn btn-primary">Editar</Link>
             <button className="btn btn-danger" onClick={eliminar}>
                 Eliminar
             </button>

@@ -1,30 +1,45 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Swal from 'sweetalert2';
 import { useForm } from '../hooks/useForm';
 import { url } from './utilities/global';
-export const Insertar = () => {
+import { useLocation } from 'react-router';
+import { Redirect } from 'react-router';
+export const Editar = () => {
+    const location=useLocation();
+    const {pathname}=location;
+    const [estado, setestado] = useState(false);
+    const datos=pathname.split('/');
+    console.log(datos);
+    const id=datos[2];
+    const nombres=datos[4];
+    console.log(nombres);
+    const apellidos=datos[6];
     const [form,handleInputChange]=useForm({
-        nombre:"",
-        apellido:""
+        nombre:nombres,
+        apellido:apellidos
     })
     const guardar=(e)=>{
         e.preventDefault();
         console.log(nombre,apellido);
-        const enviar=url+"save";
-        fetch(enviar,{method:"POST",
+        const enviar=url+"editar/"+id;
+        fetch(enviar,{method:"PUT",
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({"nombre":nombre,"apellido":apellido})
+        body:JSON.stringify({"nombre":nombre,"apellidos":apellido})
    }).then(resp=>{
        console.log(resp);
        Swal.fire(
-           'Se inserto el estudiante',
+           'Se edito el estudiante',
            nombre+" "+apellido,
            'success'
        )
+       setestado(true);
    })
        // console.log(e);
     }
     const {nombre,apellido}=form
+    if(estado){
+        return <Redirect to="/listar"/>
+    }
     return (
         <div>
             <form onSubmit={guardar}>
@@ -53,7 +68,7 @@ export const Insertar = () => {
                     <button
                     type="submit"
                     className="btn btn-primary"
-                    >Guardar</button>
+                    >Editar</button>
                 </div>
             </form>
         </div>
