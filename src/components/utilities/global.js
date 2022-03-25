@@ -1,1 +1,1 @@
-export const url='http://localhost:2023/api/';
+export const url='https://backend-szapatar.herokuapp.com/api/';//https://backend-szapatar.herokuapp.com/
